@@ -4,7 +4,7 @@ module seven_seg_decoder(
 );
 
   output [7:0] seg;
-  output [3:0] bcd;
+  input  [3:0] bcd;
   input  rst_n;
 
   assign seg =
