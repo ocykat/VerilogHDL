@@ -6,6 +6,9 @@ module parallel_adder_4bit(
 
   output [3:0] a_reg;
   input  [3:0] in;
+  input  load;
+  input  clr_n;
+  input  trf;
   wire   [3:0] b_reg;
   wire   [3:0] sum;
 

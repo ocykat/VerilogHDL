@@ -2,7 +2,7 @@
   74138 IC: 1-to-8 DEMUX
 */
 
-module demux_1_to_8(
+module demux_1to8(
   out_n,
   addr, en
 );
@@ -17,13 +17,13 @@ module demux_1_to_8(
   assign out_n =
     (enable) ?
       (
-        (~addr[0] & ~addr[1] & ~addr[2]) ? (8'b11111110) :
-        (~addr[0] & ~addr[1] &  addr[2]) ? (8'b11111101) :
-        (~addr[0] &  addr[1] & ~addr[2]) ? (8'b11111011) :
-        (~addr[0] &  addr[1] &  addr[2]) ? (8'b11110111) :
-        ( addr[0] & ~addr[1] & ~addr[2]) ? (8'b11101111) :
-        ( addr[0] & ~addr[1] &  addr[2]) ? (8'b11011111) :
-        ( addr[0] &  addr[1] & ~addr[2]) ? (8'b10111111) :
+        (~addr[2] & ~addr[1] & ~addr[0]) ? (8'b11111110) :
+        (~addr[2] & ~addr[1] &  addr[0]) ? (8'b11111101) :
+        (~addr[2] &  addr[1] & ~addr[0]) ? (8'b11111011) :
+        (~addr[2] &  addr[1] &  addr[0]) ? (8'b11110111) :
+        ( addr[2] & ~addr[1] & ~addr[0]) ? (8'b11101111) :
+        ( addr[2] & ~addr[1] &  addr[0]) ? (8'b11011111) :
+        ( addr[2] &  addr[1] & ~addr[0]) ? (8'b10111111) :
                                            (8'b01111111)
       ) :
       (8'b11111111);

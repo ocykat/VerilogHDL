@@ -15,14 +15,15 @@ module ic_74ls90(
 );
 
   output [3:0] q;
+  input  cp_0, cp_1;
   input  ms_1, ms_2;
   input  mr_1, mr_2;
 
   wire   [3:0] pre;
   wire   clr;
 
-  assign clr = (mr_1 & mr_2 & (ms_1 | ms_2)) ? (0) | (1);
-  assign pre = (ms_1 & ms_2) ? (4'b1111) : (4'b0110);
+  assign pre = (ms_1 & ms_2) ? (4'b0110) : (4'b1111);
+  assign clr = (mr_1 & mr_2 & (~ms_1 | ~ms_2)) ? (1'b0) : (1'b1);
 
   jk_ff jk_ff_0(
     .q(q[0]),
@@ -30,8 +31,8 @@ module ic_74ls90(
     .clk_n(cp_0),
     .pre_n(pre[0]),
     .clr_n(clr),
-    .j(1),
-    .k(1)
+    .j(1'b1),
+    .k(1'b1)
   );
 
   jk_ff jk_ff_1(
@@ -41,7 +42,7 @@ module ic_74ls90(
     .pre_n(pre[1]),
     .clr_n(clr),
     .j(~q[3]),
-    .k(1)
+    .k(1'b1)
   );
 
   jk_ff jk_ff_2(
@@ -50,8 +51,8 @@ module ic_74ls90(
     .clk_n(q[1]),
     .pre_n(pre[2]),
     .clr_n(clr),
-    .j(1),
-    .k(1)
+    .j(1'b1),
+    .k(1'b1)
   );
 
   wire s_3;

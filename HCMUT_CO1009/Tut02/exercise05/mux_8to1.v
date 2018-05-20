@@ -13,15 +13,17 @@ module mux_8to1(
   input  en_n;
 
   assign out =
-    (!en_n) ? (0) :
-      (~sel[0] & ~sel[1] ~sel[2]) ? (data[0]) :
-      (~sel[0] & ~sel[1]  sel[2]) ? (data[1]) :
-      (~sel[0] &  sel[1] ~sel[2]) ? (data[2]) :
-      (~sel[0] &  sel[1]  sel[2]) ? (data[3]) :
-      ( sel[0] & ~sel[1] ~sel[2]) ? (data[4]) :
-      ( sel[0] & ~sel[1]  sel[2]) ? (data[5]) :
-      ( sel[0] &  sel[1] ~sel[2]) ? (data[6]) :
-                                    (data[7]);
+    (!en_n) ?
+    (
+      (~sel[2] & ~sel[1] & ~sel[0]) ? (data[0]) :
+      (~sel[2] & ~sel[1] &  sel[0]) ? (data[1]) :
+      (~sel[2] &  sel[1] & ~sel[0]) ? (data[2]) :
+      (~sel[2] &  sel[1] &  sel[0]) ? (data[3]) :
+      ( sel[2] & ~sel[1] & ~sel[0]) ? (data[4]) :
+      ( sel[2] & ~sel[1] &  sel[0]) ? (data[5]) :
+      ( sel[2] &  sel[1] & ~sel[0]) ? (data[6]) :
+                                      (data[7])
+    ) : (1'b0);
   assign out_n = ~out;
 
 endmodule

@@ -1,4 +1,4 @@
-module rs_ff(
+module sr_ff(
   q, q_n,
   clk_n,
   pre_n, clr_n,
@@ -7,7 +7,7 @@ module rs_ff(
 
   output q, q_n;
   reg    q_npd;   // q output with no propagation delay
-  input  cp_n;
+  input  clk_n;
   input  pre_n, clr_n;
   input  s, r;
 

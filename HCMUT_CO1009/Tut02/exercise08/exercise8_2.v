@@ -8,10 +8,10 @@ module exercise8_2(
   wire   [7:0] demux_out_n;
   input  a, b, c, d, e;
 
-  demux_1_to_8 demux(
-    out_n(demux_out_n),
-    addr(a, b, c),
-    en(3'b100)
+  demux_1to8 demux(
+    .out_n(demux_out_n),
+    .addr({a, b, c}),
+    .en(3'b001)
   );
 
   assign abc =   ~demux_out_n[0]

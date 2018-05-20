@@ -7,7 +7,7 @@ module jk_ff(
 
   output q, q_n;
   reg    q_npd;   // q output with no propagation delay
-  input  cp_n;
+  input  clk_n;
   input  pre_n, clr_n;
   input  j, k;
 

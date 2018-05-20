@@ -4,16 +4,17 @@ module d_ff(
 );
 
   output q;
-  reg    q;
+  reg    q_npd;   // q output with no propagation delay
   input  clk;
   input  d, clr_n;
 
   always @ (posedge clk or negedge clr_n)
     begin
       if (!clr_n)
-        q <= 0;
+        q_npd <= 0;
       else
-        q <= d;
+        q_npd <= d;
     end
 
+  assign #2 q = q_npd;
 endmodule
